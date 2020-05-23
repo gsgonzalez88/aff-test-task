@@ -3,7 +3,6 @@ const mysql = require('mysql');
 const path = require('path');
 const express = require('express');
 const app = express();
-const ws = require('./controllers/webscrapper.controller');
 
 //route imports
 const userRoutes = require('./routes/users.route');
@@ -20,17 +19,16 @@ app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
-ws.main();
 
 
 app.use(express.static(viewsDir));
 
-/* app.use(myConnection(mysql,{
+app.use(myConnection(mysql,{
     host: 'sql10.freemysqlhosting.net',
     database: 'sql10342273',
     user: '',
     password: ''    
-}, 'single')); */
+}, 'single'));
 
 //Routes
 app.use('/', indexRoutes);
