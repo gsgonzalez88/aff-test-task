@@ -6,22 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Affluent</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>AFFLUENT</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <div class="container">            
-            <div class="row">
-                <div class="col">
-                   <h1>AFFLUENT</h1>
-                </div>
-            </div>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-brand">Affluent</div>
     </nav>   
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-7">
+                <div><button id="btn_fill" type="button">fill table</button></div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -30,15 +26,31 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Avatar</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% if (data) { %>
+                            <% for(var i = 0; i < data.length; i++) { %>
+                              <tr>
+                                <td><%= data[i].ID %></td>
+                                <td><%= data[i].email %></td>
+                                <td><%= data[i].first_name %></td>
+                                <td><%= data[i].last_name %></td>
+                                <td><img src="<%= data[i].avatar %>"></td>
+                                <td>
+                                  <a href="/update/<%= data[i].id %>" class="btn btn-info">Edit</a>
+                                  <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                                </td>
+                              </tr>
+                            <% } %>
+                          <% } %>
                     </tbody>
                 </table>
-            </div>            
+            </div>                       
         </div>
     </div>
-   
+    <script src="/main.js"></script>
 </body>
 
 </html>

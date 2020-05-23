@@ -6,20 +6,23 @@ controller.list = (req, res) => {
             if(err) {
                 res.json(error);                
             }
-            res.send(users);
+            res.render('index', {
+                data: users
+            })
         });
     })
 };
 
 
 controller.save = (req, res) => {
-    const data = req.body;
-    req.getConnection((err, conn) => {
-        conn.query('INSERT INTO users set ?',[data], (err, user) =>{
-            console.log(user);
-            res.send('works!');
+    req.body.forEach((value,index)=> {
+        req.getConnection((err, conn) => {        
+            conn.query('INSERT INTO users set ?',[value], (err, user) =>{
+                console.log('user',user);
+            })
         })
-    })
+    });
+    
 };
 
 module.exports = controller;
