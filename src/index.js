@@ -5,13 +5,21 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
+//route imports
+const userRoutes = require('./routes/users.route');
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
 
-const publicDir = path.join(__dirname,'../public');
+
+// set template engine
+app.set('view engine', 'ejs');
+const viewsDir = path.join(__dirname,'views');
+
+
 app.use(express.static(publicDir));
 
 app.use(myConnection(mysql,{
@@ -21,8 +29,10 @@ app.use(myConnection(mysql,{
     password: ''    
 }, 'single'));
 
+//Routes
+app.use('/api/users', userRoutes);
 
-//setting environment port
+//Set environment port
 const port = process.env.PORT || 8080;
 
 console.log(`Server Listening on port: ${port}`);
