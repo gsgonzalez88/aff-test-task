@@ -1,12 +1,12 @@
 const myConnection = require('express-myconnection');
 const mysql = require('mysql');
 const path = require('path');
-const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
 //route imports
 const userRoutes = require('./routes/users.route');
+const indexRoutes = require('./routes/index.route');
 
 // set template engine
 app.set('view engine', 'ejs');
@@ -14,10 +14,10 @@ const viewsDir = path.join(__dirname,'views');
 app.set('views', viewsDir);
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // parse application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 
 
@@ -31,7 +31,9 @@ app.use(myConnection(mysql,{
 }, 'single'));
 
 //Routes
+app.use('/', indexRoutes);
 app.use('/api/users', userRoutes);
+
 
 //static files
 app.use(express.static(path.join(__dirname,'public')));
