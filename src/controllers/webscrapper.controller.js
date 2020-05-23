@@ -17,8 +17,8 @@ async function main() {
     const browser = await puppeteer.launch({ headless: false});
     const page = await browser.newPage();
     await page.goto('https://develop.pub.afflu.net');
-    await page.type('input[type=email]','developertest@affluent.io');    
-    await page.type('input[type=password]','SOpcR^37');
+    await page.type('input[type=email]','');    
+    await page.type('input[type=password]','');
     await page.click('button');
     await page.waitFor(10000);
     await page.click('#pushActionRefuse');
