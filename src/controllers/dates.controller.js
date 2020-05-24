@@ -1,6 +1,7 @@
 const ws = require('../controllers/webscrapper.controller');
 const axios = require('axios');
 const controller = {};
+const dates = [];
 
 async function saveData(){
     const dateslist = await ws.main();
@@ -38,3 +39,4 @@ controller.save = (req, res) => {
 };
 
 module.exports = controller;
+exports.dates = dates;

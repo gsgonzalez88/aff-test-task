@@ -6,7 +6,7 @@ const app = express();
 
 //route imports
 const userRoutes = require('./routes/users.route');
-const indexRoutes = require('./routes/index.route');
+const boardRoutes = require('./routes/board.route');
 const datesRoutes = require('./routes/dates.route');
 
 // set template engine
@@ -33,7 +33,7 @@ app.use(myConnection(mysql,{
 console.log('Connected to mysql Database');
 
 //Routes
-app.use('/', indexRoutes);
+app.use('/', boardRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dates', datesRoutes);
 
