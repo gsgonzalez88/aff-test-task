@@ -9,8 +9,8 @@ async function saveData(){
 }
 
 
-controller.list = async (req, res) => {
-    req.getConnection((err, conn) => {
+controller.list = (req, res) => {
+    req.getConnection(async (err, conn) => {
         await saveData()
         await conn.query('SELECT * FROM data', (err, list) => {
             if(err) {
