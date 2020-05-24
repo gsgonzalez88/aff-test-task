@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fetch = require('node-fetch');
 const flatten = require('array-flatten');
+const webscrapp = require('./webscrapper.controller');
 
 
 function getUsersListMultiplePages(url,pages){
@@ -22,9 +23,6 @@ async function saveUsers(){
    try {
     const users = await getUsersListMultiplePages('https://reqres.in/api/users',2);
     const body = flatten.flatten(users);
-
-    console.log(body)
-
     await axios.post('http://localhost:8080/api/users', body);
    }
    catch(error) {
@@ -32,4 +30,11 @@ async function saveUsers(){
    }
 }
 
+async function saveData(){
+    const data = await webscrapp.main();
+    console.log(data);
+    /* await axios.post('http://localhost:8080/api/data/save', data); */
+}
+
 exports.saveUsers = saveUsers;
+exports.saveData = saveData;

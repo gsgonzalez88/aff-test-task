@@ -3,11 +3,11 @@ const mysql = require('mysql');
 const path = require('path');
 const express = require('express');
 const app = express();
-const ws = require('./controllers/webscrapper.controller');
 
 //route imports
 const userRoutes = require('./routes/users.route');
 const indexRoutes = require('./routes/index.route');
+const datesRoutes = require('./routes/dates.route');
 
 // set template engine
 app.set('view engine', 'ejs');
@@ -20,21 +20,22 @@ app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
-ws.main();
 
 
 app.use(express.static(viewsDir));
 
-/* app.use(myConnection(mysql,{
+app.use(myConnection(mysql,{
     host: 'sql10.freemysqlhosting.net',
     database: 'sql10342273',
-    user: '',
-    password: ''    
-}, 'single')); */
+    user: process.env.mysql_db_user,
+    password: process.env.mysql_db_pw    
+}, 'single'));
+console.log('Connected to mysql Database');
 
 //Routes
 app.use('/', indexRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/dates', datesRoutes);
 
 
 //static files
