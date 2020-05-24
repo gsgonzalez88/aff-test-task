@@ -1,23 +1,15 @@
-const ws = require('../controllers/webscrapper.controller');
 const axios = require('axios');
 const controller = {};
 const dates = [];
 
-async function saveData(){
-    const dateslist = await ws.main();
-    console.log(dateslist);
-    /* await axios.post('http://localhost:8080/api/dates', dateslist); */
-}
-
 
 controller.list = (req, res) => {
-    req.getConnection(async (err, conn) => {
-        await saveData()
-        await conn.query('SELECT * FROM data', (err, list) => {
+    req.getConnection( (err, conn) => {
+        conn.query('SELECT * FROM dates', (err, list) => {
             if(err) {
                 res.json(error);                
             }
-            res.render('index', {
+            res.render('dates', {
                 dates: list
             })
         });

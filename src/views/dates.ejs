@@ -3,28 +3,33 @@
     <div class="row mt-5">
         <div class="col-md-4">
             <div class="m4">
-                <h2>Users</h2>
+                <h2>Dates</h2>
             </div>            
             <div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Avatar</th>
+                            <th>Date</th>
+                            <th>Commissions-total</th>
+                            <th>Sales-net</th>
+                            <th>Leads-net</th>
+                            <th>Clicks</th>
+                            <th>EPC</th>
+                            <th>Impressions</th>
+                            <th>CR</th> 
                         </tr>
                     </thead>
                     <tbody>
-                        <% if (data) { %>
-                        <% for(var i = 0; i < data.length; i++) { %>
+                        <% if (dates) { %>
+                        <% for(var i = 0; i < dates.length; i++) { %>
                         <tr>
-                            <td><%= data[i].ID %></td>
-                            <td><%= data[i].email %></td>
-                            <td><%= data[i].first_name %></td>
-                            <td><%= data[i].last_name %></td>
-                            <td><img src="<%= data[i].avatar %>"></td>
+                            <td><%= dates[i].date %></td>
+                            <td><%= dates[i].commissions_total %></td>
+                            <td><%= dates[i].sales_net %></td>
+                            <td><%= dates[i].clicks %></td>
+                            <td><%= dates[i].epc %></td>
+                            <td><%= dates[i].impressions %></td>
+                            <td><%= dates[i].cr %></td>
                         </tr>
                         <% } %>
                         <% } %>
@@ -32,8 +37,8 @@
                 </table>
             </div>
             <div>               
-                <button class="btn btn-info" id="btn_userdb" type="button">Populate users DB</button>
-                <button class="btn btn-info" id="btn_fill_users" type="button">Fill the board</button>
+                <button class="btn btn-info" id="btn_datesdb" type="button">Populate dates DB</button>
+                <button class="btn btn-info" id="btn_fill_dates" type="button">Fill the board</button>
             </div>
         </div>
     </div>
