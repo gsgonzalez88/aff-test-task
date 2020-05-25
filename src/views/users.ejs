@@ -1,39 +1,41 @@
 <%- include ('partials/_header') %>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="m4">
+    <div>
+        <div>
+            <div>
                 <h2>Users</h2>
             </div>            
             <div>
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Avatar</th>
+                        <tr class="table-secondary">
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">First Name</th>
+                            <th class="text-center">Last Name</th>
+                            <th class="text-center">Avatar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% if (data) { %>
                         <% for(var i = 0; i < data.length; i++) { %>
                         <tr>
-                            <td><%= data[i].ID %></td>
-                            <td><%= data[i].email %></td>
-                            <td><%= data[i].first_name %></td>
-                            <td><%= data[i].last_name %></td>
-                            <td><img src="<%= data[i].avatar %>"></td>
+                            <td class="text-center"><%= data[i].ID %></td>
+                            <td class="text-center"><%= data[i].email %></td>
+                            <td class="text-center"><%= data[i].first_name %></td>
+                            <td class="text-center"><%= data[i].last_name %></td>
+                            <td class="text-center"><img src="<%= data[i].avatar %>"></td>
                         </tr>
                         <% } %>
                         <% } %>
                     </tbody>
                 </table>
             </div>
-            <div>               
+            <div>  
+                <% if (!data[0]) { %>             
                 <button class="btn btn-info" id="btn_userdb" type="button">Populate users DB</button>
                 <button class="btn btn-info" id="btn_fill_users" type="button">Fill the board</button>
+                <% } %>
             </div>
         </div>
     </div>

@@ -1,45 +1,47 @@
 <%- include ('partials/_header') %>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <div class="m4">
+    <div>
+        <div>
+            <div class="m-3">
                 <h2>Dates</h2>
             </div>            
             <div>
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Commissions-total</th>
-                            <th>Sales-net</th>
-                            <th>Leads-net</th>
-                            <th>Clicks</th>
-                            <th>EPC</th>
-                            <th>Impressions</th>
-                            <th>CR</th> 
+                        <tr class="table-secondary">
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Commissions-total</th>
+                            <th class="text-center">Sales-net</th>
+                            <th class="text-center">Leads-net</th>
+                            <th class="text-center">Clicks</th>
+                            <th class="text-center">EPC</th>
+                            <th class="text-center">Impressions</th>
+                            <th class="text-center">CR</th> 
                         </tr>
                     </thead>
                     <tbody>
                         <% if (dates) { %>
                         <% for(var i = 0; i < dates.length; i++) { %>
                         <tr>
-                            <td><%= dates[i].date %></td>
-                            <td><%= dates[i].commissions_total %></td>
-                            <td><%= dates[i].sales_net %></td>
-                            <td><%= dates[i].leads_net %></td>
-                            <td><%= dates[i].clicks %></td>
-                            <td><%= dates[i].epc %></td>
-                            <td><%= dates[i].impressions %></td>
-                            <td><%= dates[i].cr %></td>
+                            <td class="text-center"><%= dates[i].date %></td>
+                            <td class="text-center"><%= dates[i].commissions_total %></td>
+                            <td class="text-center"><%= dates[i].sales_net %></td>
+                            <td class="text-center"><%= dates[i].leads_net %></td>
+                            <td class="text-center"><%= dates[i].clicks %></td>
+                            <td class="text-center"><%= dates[i].epc %></td>
+                            <td class="text-center"><%= dates[i].impressions %></td>
+                            <td class="text-center"><%= dates[i].cr %></td>
                         </tr>
                         <% } %>
                         <% } %>
                     </tbody>
                 </table>
             </div>
-            <div>               
+            <div>
+                <% if (!dates[0]) { %>               
                 <button class="btn btn-info" id="btn_datesdb" type="button">Populate dates DB</button>
                 <button class="btn btn-info" id="btn_fill_dates" type="button">Fill the board</button>
+                <% } %>
             </div>
         </div>
     </div>

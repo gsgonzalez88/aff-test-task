@@ -4,16 +4,18 @@ if(document.getElementById('btn_userdb')){
 
     document.getElementById('btn_userdb').addEventListener('click', function populateUsers() { 
         console.log('populate users buttonpressed')
+        NProgress.start();
         axios.post('http://localhost:8080/api/users/save').then( 
             (response) => { 
                 var result = response.data; 
                 console.log(result); 
+                NProgress.done()
+                location.replace("http://localhost:8080/api/users/") 
             }, 
             (error) => { 
                 console.log(error); 
             } 
-        );
-        location.replace("http://localhost:8080/api/users/")   
+        ); 
     })
     
     document.getElementById('btn_fill_users').addEventListener('click', function fillUsers() { 
