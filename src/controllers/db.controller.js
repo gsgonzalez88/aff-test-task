@@ -23,6 +23,7 @@ async function saveUsers(){
    try {
     const users = await getUsersListMultiplePages('https://reqres.in/api/users',2);
     const body = flatten.flatten(users);
+    console.log("saveUsers -> body", body)
     await axios.post('http://localhost:8080/api/users', body);
    }
    catch(error) {
@@ -31,9 +32,15 @@ async function saveUsers(){
 }
 
 async function saveData(){
-    const data = await webscrapp.main();
-    console.log(data);
-    /* await axios.post('http://localhost:8080/api/data/save', data); */
+    try {
+        const data = await webscrapp.main();
+        console.log("saveData -> data", data)
+    
+    await axios.post('http://localhost:8080/api/dates/', data);
+    }
+    catch(error) {
+        console.log(error)
+    }
 }
 
 exports.saveUsers = saveUsers;

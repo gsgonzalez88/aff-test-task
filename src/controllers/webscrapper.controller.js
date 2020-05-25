@@ -5,7 +5,6 @@ const _ = require('lodash');
 
 
 async function main() {
-    console.clear();
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://develop.pub.afflu.net');

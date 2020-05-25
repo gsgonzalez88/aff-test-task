@@ -1,7 +1,5 @@
 const controller = {};
 
-const data = [];
-
 
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
@@ -18,9 +16,10 @@ controller.list = (req, res) => {
 
 
 controller.save = (req, res) => {
-    req.body.forEach((value,index)=> {
+    req.body.forEach((value,index)=> {        
         req.getConnection((err, conn) => {              
             conn.query('INSERT INTO users set ?',[value], (err, user) =>{                
+            console.log("controller.save -> err", err)
                 console.log('user',user);
             })
         })
@@ -29,4 +28,3 @@ controller.save = (req, res) => {
 };
 
 module.exports = controller;
-exports.data = data;
